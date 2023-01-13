@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2023_1_13_子矩阵的和", "2023_1_13_子矩阵的和\2023_1_13_子矩阵的和.vcxproj", "{01EE63E0-9469-45C2-8836-3F46521D8396}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Debug|x64.ActiveCfg = Debug|x64
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Debug|x64.Build.0 = Debug|x64
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Debug|x86.ActiveCfg = Debug|Win32
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Debug|x86.Build.0 = Debug|Win32
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Release|x64.ActiveCfg = Release|x64
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Release|x64.Build.0 = Release|x64
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Release|x86.ActiveCfg = Release|Win32
+		{01EE63E0-9469-45C2-8836-3F46521D8396}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8EED671-4F46-4567-939A-A4931CB14A38}
+	EndGlobalSection
+EndGlobal
