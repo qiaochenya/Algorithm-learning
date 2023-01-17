@@ -1,0 +1,10 @@
+5 
+I abc
+Q abc
+Q ab
+I ab
+Q ab
+
+1
+0
+1
