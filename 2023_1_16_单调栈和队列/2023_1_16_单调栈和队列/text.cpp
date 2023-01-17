@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<iostream>
+#include<vector>
 using namespace std;
 
 //题目找到左边离它最近的数在哪将数字输出否则，输出-1
@@ -29,15 +30,55 @@ using namespace std;
 
 //题目滑动窗口，找一个大小为k的窗口中最小和最大的数
 
+//暴力做法,求最大值，会超时
+
+//int n, k;
+//const int N = 1000010;
+//int a[N];
+//vector<int>coun;
+//int search(int l, int r, int b[])
+//{
+//	int max = 0;
+//	while (l <= r)
+//	{
+//		if (r - l + 1 == k)
+//			max = b[l];
+//		else
+//			if (max < b[l])
+//				max = b[l];
+//		l++;
+//	}
+//	return max;
+//}
+//int main()
+//{
+//	cin >> n >> k;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cin >> a[i];
+//	}
+//	int l = 0, r = k - 1;
+//	while (r <= n - 1)
+//	{
+//		coun.push_back(search(l, r, a));
+//		l++;
+//		r++;
+//	}
+//	for (auto i = coun.begin(); i < coun.end(); i++)
+//		cout << *i << " ";
+//	return 0;
+//}
+
 int n, k;
 const int N = 1000010;
 int a[N], q[N];
 int main()
 {
 	scanf_s("%d%d", &n, &k);
-	for (int i = 0; i < n; i++)
-		scanf_s("%d", &a[i]);
+	/*for (int i = 0; i < n; i++)
+		scanf_s("%d", &a[i]);*/
 	int hh = 0, tt = -1;
+
 	for (int i = 0; i < n; i++)
 	{
 		//首先判断是否队首不在窗口内
