@@ -7,7 +7,7 @@ const int N = 100010;
 int n, m;
 int h[N], sizes;
 int ph[N], hp[N];
-void swap_heap(int a, int b)
+void swap_heap(int a, int b)	//这里的a，b其实是堆里面的下标
 {
 	swap(ph[hp[a]], ph[hp[b]]);
 	swap(hp[a], hp[b]);
@@ -22,7 +22,7 @@ void down(int x)
 		t = x * 2 + 1;
 	if (t != x)
 	{
-		swap_heap(h[x], h[t]);
+		swap_heap(x, t);
 		down(t);
 	}
 }
@@ -30,7 +30,7 @@ void up(int x)
 {
 	while (x / 2 > 0 && h[x / 2] > h[x])
 	{
-		swap_heap(h[x / 2], h[x]);
+		swap_heap(x / 2, x);
 		x /= 2;
 	}
 }
