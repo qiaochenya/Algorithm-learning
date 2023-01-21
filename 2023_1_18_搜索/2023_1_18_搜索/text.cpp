@@ -38,37 +38,82 @@ using namespace std;
 
 //n皇后
 
+//const int N = 20;
+//int n;
+//char g[N][N];
+//bool col[N], dg[N], udg[N];
+//
+//void dfs(int u)
+//{
+//	if (n == u)
+//	{
+//		for (int i = 0; i < n; i++)
+//		{
+//			for (int j = 0; j < n; j++)
+//			{
+//				cout << g[i][j];
+//			}
+//			cout << endl;
+//		}
+//		cout << endl;
+//		return;
+//	}
+//	for (int i = 0; i < n; i++)	//枚举列
+//	{
+//		if (!col[i] && !dg[i + u] && !udg[n - u + i])
+//		{
+//			g[u][i] = 'G';
+//			col[i] = dg[i + u] = udg[n - u + i] = true;
+//			dfs(u + 1);
+//			g[u][i] = '.';
+//			col[i] = dg[i + u] = udg[n - u + i] = false;
+//		}
+//
+//	}
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//		for (int j = 0; j < n; j++)
+//			g[i][j] = '.';
+//	dfs(0);
+//	return 0;
+//}
+
+//另一种写法，枚举每一个格子
+
 const int N = 20;
 int n;
 char g[N][N];
-bool col[N], dg[N], udg[N];
+bool row[N], col[N], dg[N], udg[N];
 
-void dfs(int u)
+void dfs(int x, int y, int s)
 {
-	if (n == u)
+	if (y == n)
+		x++, y = 0;
+	if (x == n)
 	{
-		for (int i = 0; i < n; i++)
+		if (s == n)
 		{
-			for (int j = 0; j < n; j++)
-			{
-				cout << g[i][j];
-			}
+			for (int i = 0; i < n; i++)
+				puts(g[i]);
 			cout << endl;
+			return;
 		}
-		cout << endl;
 		return;
 	}
-	for (int i = 0; i < n; i++)	//枚举列
+	//下一步不放皇后
+	dfs(x, y + 1, s);
+	//放皇后
+	if (!row[x] && !col[y] && !dg[y + x] && !udg[x - y + n])
 	{
-		if (!col[i] && !dg[i + u] && !udg[n - u + i])
-		{
-			g[u][i] = 'G';
-			col[i] = dg[i + u] = udg[n - u + i] = true;
-			dfs(u + 1);
-			g[u][i] = '.';
-			col[i] = dg[i + u] = udg[n - u + i] = false;
-		}
-
+		g[x][y] = 'Q';
+		row[x] = col[y] = dg[y + x] = udg[x - y + n] = true;
+		dfs(x, y + 1, s + 1);
+		g[x][y] = '.';
+		row[x] = col[y] = dg[y + x] = udg[x - y + n] = false;
 	}
 }
 
@@ -78,6 +123,6 @@ int main()
 	for (int i = 0; i < n; i++)
 		for (int j = 0; j < n; j++)
 			g[i][j] = '.';
-	dfs(0);
+	dfs(0, 0, 0);
 	return 0;
 }
