@@ -144,35 +144,79 @@ using namespace std;
 
 //一维差分
 
-int n, m;
-const int N = 100010;
-int a[N], s[N];
+//int n, m;
+//const int N = 100010;
+//int a[N], s[N];
+//
+//void insert(int l, int r, int k)
+//{
+//	s[l] += k;
+//	s[r + 1] -= k;
+//}
+//int main()
+//{
+//	cin >> n >> m;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		int x;
+//		cin >> x;
+//		a[i] = x;
+//		insert(i, i, x);
+//	}
+//	while (m--)
+//	{
+//		int l, r, k;
+//		cin >> l >> r >> k;
+//		insert(l, r, k);
+//	}
+//	for (int i = 1; i <= n; i++)
+//	{
+//		a[i] = a[i - 1] + s[i];
+//		cout << a[i] << ' ';
+//	}
+//	return 0;
+//}
 
-void insert(int l, int r, int k)
+//二维差分
+
+const int N = 1010;
+int n, m, q;
+int a[N][N], b[N][N];
+
+void insert(int x1, int y1, int x2, int y2, int k)
 {
-	s[l] += k;
-	s[r + 1] -= k;
+	b[x1][y1] += k;
+	b[x1][y2 + 1] -= k;
+	b[x2 + 1][y1] -= k;
+	b[x2 + 1][y2 + 1] += k;
 }
 int main()
 {
-	cin >> n >> m;
+	cin >> n >> m >> q;
 	for (int i = 1; i <= n; i++)
 	{
-		int x;
-		cin >> x;
-		a[i] = x;
-		insert(i, i, x);
+		for (int j = 1; j <= m; j++)
+		{
+			int x;
+			cin >> x;
+			a[i][j] = x;
+			insert(i, j, i, j, x);
+		}
 	}
-	while (m--)
+	while (q--)
 	{
-		int l, r, k;
-		cin >> l >> r >> k;
-		insert(l, r, k);
+		int x1, x2, y1, y2, k;
+		cin >> x1 >> y1 >> x2 >> y2 >> k;
+		insert(x1, y1, x2, y2, k);
 	}
 	for (int i = 1; i <= n; i++)
 	{
-		a[i] = a[i - 1] + s[i];
-		cout << a[i] << ' ';
+		for (int j = 1; j <= m; j++)
+		{
+			a[i][j] = a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1] + b[i][j];
+			cout << a[i][j] << ' ';
+		}
+		cout << endl;
 	}
 	return 0;
 }
