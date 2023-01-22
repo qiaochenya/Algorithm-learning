@@ -119,25 +119,60 @@ using namespace std;
 
 //¶þÎ¬¾ØÕó
 
-const int N = 1010;
-int a[N][N], s[N][N];
-int n, m, k;
+//const int N = 1010;
+//int a[N][N], s[N][N];
+//int n, m, k;
+//int main()
+//{
+//	cin >> n >> m >> k;
+//	for (int i = 1; i <= n; i++)
+//		for (int j = 1; j <= m; j++)
+//			cin >> a[i][j];
+//
+//	for (int i = 1; i <= n; i++)
+//		for (int j = 1; j <= m; j++)
+//			s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+//
+//	while (k--)
+//	{
+//		int x1, x2, y1, y2;
+//		cin >> x1 >> y1 >> x2 >> y2;
+//		cout << s[x2][y2] - s[x1 - 1][y2] - s[x2][y1 - 1] + s[x1 - 1][y1 - 1];
+//	}
+//	return 0;
+//}
+
+//Ò»Î¬²î·Ö
+
+int n, m;
+const int N = 100010;
+int a[N], s[N];
+
+void insert(int l, int r, int k)
+{
+	s[l] += k;
+	s[r + 1] -= k;
+}
 int main()
 {
-	cin >> n >> m >> k;
+	cin >> n >> m;
 	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= m; j++)
-			cin >> a[i][j];
-
-	for (int i = 1; i <= n; i++)
-		for (int j = 1; j <= m; j++)
-			s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
-
-	while (k--)
 	{
-		int x1, x2, y1, y2;
-		cin >> x1 >> y1 >> x2 >> y2;
-		cout << s[x2][y2] - s[x1 - 1][y2] - s[x2][y1 - 1] + s[x1 - 1][y1 - 1];
+		int x;
+		cin >> x;
+		a[i] = x;
+		insert(i, i, x);
+	}
+	while (m--)
+	{
+		int l, r, k;
+		cin >> l >> r >> k;
+		insert(l, r, k);
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		a[i] = a[i - 1] + s[i];
+		cout << a[i] << ' ';
 	}
 	return 0;
 }
