@@ -179,44 +179,186 @@ using namespace std;
 
 //二维差分
 
-const int N = 1010;
-int n, m, q;
-int a[N][N], b[N][N];
+//const int N = 1010;
+//int n, m, q;
+//int a[N][N], b[N][N];
+//
+//void insert(int x1, int y1, int x2, int y2, int k)
+//{
+//	b[x1][y1] += k;
+//	b[x1][y2 + 1] -= k;
+//	b[x2 + 1][y1] -= k;
+//	b[x2 + 1][y2 + 1] += k;
+//}
+//int main()
+//{
+//	cin >> n >> m >> q;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		for (int j = 1; j <= m; j++)
+//		{
+//			int x;
+//			cin >> x;
+//			a[i][j] = x;
+//			insert(i, j, i, j, x);
+//		}
+//	}
+//	while (q--)
+//	{
+//		int x1, x2, y1, y2, k;
+//		cin >> x1 >> y1 >> x2 >> y2 >> k;
+//		insert(x1, y1, x2, y2, k);
+//	}
+//	for (int i = 1; i <= n; i++)
+//	{
+//		for (int j = 1; j <= m; j++)
+//		{
+//			a[i][j] = a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1] + b[i][j];
+//			cout << a[i][j] << ' ';
+//		}
+//		cout << endl;
+//	}
+//	return 0;
+//}
 
-void insert(int x1, int y1, int x2, int y2, int k)
-{
-	b[x1][y1] += k;
-	b[x1][y2 + 1] -= k;
-	b[x2 + 1][y1] -= k;
-	b[x2 + 1][y2 + 1] += k;
-}
+//数组元素之和，两个数组都是有序的，找一个数组其中一个元素和另一个数组其中一个元素加起来等于x
+
+//const int N = 100010;
+//int n, m, k;
+//int a[N], b[N];
+//
+//int main()
+//{
+//	cin >> n >> m >> k;
+//	for (int i = 0; i < n; i++)
+//		cin >> a[i];
+//	for (int i = 0; i < m; i++)
+//		cin >> b[i];
+//	for (int i = 0, j = m - 1; i < n; i++)
+//	{
+//		while (j >= 0 && a[i] + b[j] > k)
+//		{
+//			j--;
+//		}
+//		if (a[i] + b[j] == k)
+//		{
+//			cout << i << " " << j << endl;
+//			break;
+//		}
+//	}
+//	return 0;
+//}
+
+//双链表
+
+//const int N = 100010;
+//int l[N], r[N], e[N], idx;
+//int n;
+//
+//void init()	//0是左边的点，1是右边的点
+//{
+//	r[0] = 1;
+//	l[1] = 0;
+//	idx = 2;
+//}
+//
+//void add(int k, int x)	//插入的核心操作，左插还是右插，头插还是尾插都可以通过这个实现
+//{
+//	e[idx] = x;
+//	r[idx] = r[k];
+//	l[idx] = k;
+//	l[r[k]] = idx;
+//	r[k] = idx++;
+//}
+//
+//void remove(int k)
+//{
+//	l[r[k]] = l[k];
+//	r[l[k]] = r[k];
+//}
+//
+//int main()
+//{
+//	init();
+//	cin >> n;
+//	while (n--)
+//	{
+//		string op;
+//		int x, k;
+//		cin >> op;
+//		if (op == "L")	//在左端点的右边插入一个数
+//		{
+//			cin >> x;
+//			add(0, x);
+//		}
+//		else if (op == "R")
+//		{
+//			cin >> x;
+//			add(l[1], x);
+//		}
+//		else if (op == "D")	//删除第k个插入的数
+//		{
+//			cin >> k;
+//			remove(k + 1);
+//		}
+//		else if (op == "IL")	//在第k个数的左边插入一个数
+//		{
+//			cin >> k >> x;
+//			add(l[k + 1], x);
+//		}
+//		else
+//		{
+//			cin >> k >> x;
+//			add(k + 1, x);
+//		}
+//	}
+//	for (int i = r[0]; i != 1; i = r[i])
+//	{
+//		cout << e[i] << " ";
+//	}
+//	cout << endl;
+//	return 0;
+//}
+
+//KMP
+
+const int N = 10010;
+char s[N], p[N];
+int ne[N];	//p是模板串
+int n, m;
+
 int main()
 {
-	cin >> n >> m >> q;
-	for (int i = 1; i <= n; i++)
+	cin >> m >> s >> n >> p;
+	//求next数组
+	ne[0] = 0;
+	for (int i = 1, j = 0; i < n; i++)
 	{
-		for (int j = 1; j <= m; j++)
+		while (j != 0 && p[j] != p[i])
+			j = ne[j - 1];
+		if (p[j] == p[i])
+			j++;
+		ne[i] = j;
+	}
+
+	for (int i = 0, j = 0; i < m; i++)
+	{
+		while (j != 0 && s[i] != p[j])
+			j = ne[j - 1];
+		if (p[j] == s[i])
+			j++;
+		if (j == n)
 		{
-			int x;
-			cin >> x;
-			a[i][j] = x;
-			insert(i, j, i, j, x);
+			cout << i - n + 1 << " ";
+			if (j != 0)
+				j = ne[j - 1];
 		}
 	}
-	while (q--)
+	//打印ne数组
+	cout << endl;
+	for (int i = 0; i < n; i++)
 	{
-		int x1, x2, y1, y2, k;
-		cin >> x1 >> y1 >> x2 >> y2 >> k;
-		insert(x1, y1, x2, y2, k);
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		for (int j = 1; j <= m; j++)
-		{
-			a[i][j] = a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1] + b[i][j];
-			cout << a[i][j] << ' ';
-		}
-		cout << endl;
+		cout << ne[i] << " ";
 	}
 	return 0;
 }

@@ -34,7 +34,7 @@ int main()
 	int res = 0;
 	for (int i = 0, j = 0; i < n; i++)
 	{
-		s[a[i]]++;
+		s[a[i]]++;	//用另一个数组存当前数字出现了多少次
 		while (s[a[i]] > 1)
 		{
 			s[a[j]]--;
