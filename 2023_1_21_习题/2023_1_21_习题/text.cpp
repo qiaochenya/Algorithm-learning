@@ -222,6 +222,7 @@ using namespace std;
 //}
 
 //数组元素之和，两个数组都是有序的，找一个数组其中一个元素和另一个数组其中一个元素加起来等于x
+//双指针算法主要先考虑暴力，再思考单调性
 
 //const int N = 100010;
 //int n, m, k;
@@ -322,43 +323,100 @@ using namespace std;
 
 //KMP
 
-const int N = 10010;
-char s[N], p[N];
-int ne[N];	//p是模板串
-int n, m;
+//const int N = 10010;
+//char s[N], p[N];
+//int ne[N];	//p是模板串
+//int n, m;
+//
+//int main()
+//{
+//	cin >> m >> s >> n >> p;
+//	//求next数组
+//	ne[0] = 0;
+//	for (int i = 1, j = 0; i < n; i++)
+//	{
+//		while (j != 0 && p[j] != p[i])
+//			j = ne[j - 1];
+//		if (p[j] == p[i])
+//			j++;
+//		ne[i] = j;
+//	}
+//
+//	for (int i = 0, j = 0; i < m; i++)
+//	{
+//		while (j != 0 && s[i] != p[j])
+//			j = ne[j - 1];
+//		if (p[j] == s[i])
+//			j++;
+//		if (j == n)
+//		{
+//			cout << i - n + 1 << " ";
+//			if (j != 0)
+//				j = ne[j - 1];
+//		}
+//	}
+//	//打印ne数组
+//	cout << endl;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cout << ne[i] << " ";
+//	}
+//	return 0;
+//}
+
+//在N个整数中选出两个进行异或计算，得到的结果最大是多少
+
+const int N = 100010, M = N * 31;	//每个数31位
+int n;
+int a[N], son[M][2], idx;	//2是因为二进制
+
+//插入操作
+void insert(int x)
+{
+	int p = 0;
+	for (int i = 30; i >= 0; i--)
+	{
+		int u = x >> i & 1;
+		if (son[p][u] == 0)	//创建一个节点
+			son[p][u] = ++idx;
+		p = son[p][u];
+	}
+}
+
+//询问操作
+int query(int x)
+{
+	int p = 0, ans = 0;
+	for (int i = 30; i >= 0; i--)
+	{
+		int u = x >> i & 1;
+		if (son[p][!u] != 0)	//要向反方向去
+		{
+			p = son[p][!u];
+			ans = ans * 2 + !u;
+		}
+		else
+		{
+			p = son[p][u];	//没有点只好将就
+			ans = ans * 2 + u;
+		}
+	}
+	return ans;
+}
 
 int main()
 {
-	cin >> m >> s >> n >> p;
-	//求next数组
-	ne[0] = 0;
-	for (int i = 1, j = 0; i < n; i++)
-	{
-		while (j != 0 && p[j] != p[i])
-			j = ne[j - 1];
-		if (p[j] == p[i])
-			j++;
-		ne[i] = j;
-	}
-
-	for (int i = 0, j = 0; i < m; i++)
-	{
-		while (j != 0 && s[i] != p[j])
-			j = ne[j - 1];
-		if (p[j] == s[i])
-			j++;
-		if (j == n)
-		{
-			cout << i - n + 1 << " ";
-			if (j != 0)
-				j = ne[j - 1];
-		}
-	}
-	//打印ne数组
-	cout << endl;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+		cin >> a[i];
+	int res = 0;
 	for (int i = 0; i < n; i++)
 	{
-		cout << ne[i] << " ";
+		insert(a[i]);	//先插入再查找可以不写多一层判断是否为空
+		int t = query(a[i]);
+		res = max(res, a[i] ^ t);
 	}
+	cout << res << endl;
 	return 0;
 }
+
