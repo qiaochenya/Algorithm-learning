@@ -366,57 +366,124 @@ using namespace std;
 
 //在N个整数中选出两个进行异或计算，得到的结果最大是多少
 
-const int N = 100010, M = N * 31;	//每个数31位
-int n;
-int a[N], son[M][2], idx;	//2是因为二进制
+//const int N = 100010, M = N * 31;	//每个数31位
+//int n;
+//int a[N], son[M][2], idx;	//2是因为二进制
+//
+////插入操作
+//void insert(int x)
+//{
+//	int p = 0;
+//	for (int i = 30; i >= 0; i--)
+//	{
+//		int u = x >> i & 1;
+//		if (son[p][u] == 0)	//创建一个节点
+//			son[p][u] = ++idx;
+//		p = son[p][u];
+//	}
+//}
+//
+////询问操作
+//int query(int x)
+//{
+//	int p = 0, ans = 0;
+//	for (int i = 30; i >= 0; i--)
+//	{
+//		int u = x >> i & 1;
+//		if (son[p][!u] != 0)	//要向反方向去
+//		{
+//			p = son[p][!u];
+//			ans = ans * 2 + !u;
+//		}
+//		else
+//		{
+//			p = son[p][u];	//没有点只好将就
+//			ans = ans * 2 + u;
+//		}
+//	}
+//	return ans;
+//}
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//		cin >> a[i];
+//	int res = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		insert(a[i]);	//先插入再查找可以不写多一层判断是否为空
+//		int t = query(a[i]);
+//		res = max(res, a[i] ^ t);
+//	}
+//	cout << res << endl;
+//	return 0;
+//}
+//
 
-//插入操作
-void insert(int x)
-{
-	int p = 0;
-	for (int i = 30; i >= 0; i--)
-	{
-		int u = x >> i & 1;
-		if (son[p][u] == 0)	//创建一个节点
-			son[p][u] = ++idx;
-		p = son[p][u];
-	}
-}
+//食物链——并查集
 
-//询问操作
-int query(int x)
+const int N = 50010;
+int n, m;
+int fa[N], d[N];	//d数组是到父节点的距离
+
+int find(int x)
 {
-	int p = 0, ans = 0;
-	for (int i = 30; i >= 0; i--)
+	if (x != fa[x])
 	{
-		int u = x >> i & 1;
-		if (son[p][!u] != 0)	//要向反方向去
-		{
-			p = son[p][!u];
-			ans = ans * 2 + !u;
-		}
-		else
-		{
-			p = son[p][u];	//没有点只好将就
-			ans = ans * 2 + u;
-		}
+		int t = find(fa[x]);
+		d[x] += d[fa[x]];
+		fa[x] = t;
 	}
-	return ans;
+	return fa[x];
 }
 
 int main()
 {
-	cin >> n;
-	for (int i = 0; i < n; i++)
-		cin >> a[i];
-	int res = 0;
-	for (int i = 0; i < n; i++)
+	cin >> n >> m;
+	//初始化father数组
+	for (int i = 1; i <= n; i++)
 	{
-		insert(a[i]);	//先插入再查找可以不写多一层判断是否为空
-		int t = query(a[i]);
-		res = max(res, a[i] ^ t);
+		fa[i] = i;
+	}
+	int res = 0;	//假话数量
+	while (m--)
+	{
+		int t, x, y;
+		cin >> t >> x >> y;
+		if (x > n || y > n)
+		{
+			res++;
+		}
+		else
+		{
+			int px = find(x), py = find(y);
+			if (t == 1)
+			{
+				if (px == py && ((d[x] % 3) - (d[y] % 3)) != 0)	//在同一棵树上并且到根节点的距离不同所以是假话
+				{
+					res++;
+				}
+				else if (px != py)	// 不在同一棵树上，合并两棵树
+				{
+					fa[px] = py;
+					d[px] = d[y] - d[x];
+				}
+			}
+			else if (t == 2)
+			{
+				if (px == py && ((d[x] % 3 - d[y] % 3 != 1) && (d[x] % 3 - d[y] % 3 != -2)))	//和上面同样套路先分析在同一棵树上,注意从后往前吃和从前往后吃减的结果不同
+				{
+					res++;
+				}
+				else if (px != py)
+				{
+					fa[px] = py;
+					d[px] = 1 - d[x] + d[y];
+				}
+			}
+		}
 	}
 	cout << res << endl;
 	return 0;
 }
-
