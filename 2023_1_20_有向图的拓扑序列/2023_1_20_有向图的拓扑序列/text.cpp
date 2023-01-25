@@ -16,7 +16,7 @@ void add(int a, int b)
 
 bool topsort()
 {
-	int hh = 0, tt = -1;
+	int hh = 0, tt = -1;	//tt是-1因为这个队列一开始还没有数
 	//先把入度为0的点加进来
 	for (int i = 1; i <= n; i++)
 	{
