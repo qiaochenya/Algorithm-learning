@@ -78,15 +78,76 @@ using namespace std;
 
 //辗转相除法求最大公约数
 
-int get(int a, int b)
+//int get(int a, int b)
+//{
+//	return b ? get(b, a % b) : a;
+//}
+//
+//int main()
+//{
+//	int n, m;
+//	cin >> n >> m;
+//	cout << get(n, m) << endl;
+//	return 0;
+//}
+
+//欧几里得算法的拓展求a * x + b * y = d 中的x和y
+
+//int exgcd(int a, int b, int &x, int &y)
+//{
+//	if (b == 0)
+//	{
+//		x = 1, y = 0;
+//		return a;
+//	}
+//	int t = exgcd(b, a % b, y, x);
+//	y = y - (a / b) * x;
+//	return t;
+//}
+//
+//int main()
+//{
+//	int n;
+//	cin >> n;
+//	while (n--)
+//	{
+//		int a, b;
+//		int x = 0, y = 0;
+//		cin >> a >> b;
+//		exgcd(a, b, x, y);
+//		cout << x << " " << y << endl;
+//	}
+//	return 0;
+//}
+
+
+//线性同余方程
+
+int exgcd(int a, int b, int& x, int& y)
 {
-	return b ? get(b, a % b) : a;
+	if (b == 0)
+	{
+		x = 1, y = 0;
+		return a;
+	}
+	int t = exgcd(b, a % b, y, x);
+	y = y - a / b * x;
+	return t;
 }
 
 int main()
 {
-	int n, m;
-	cin >> n >> m;
-	cout << get(n, m) << endl;
+	int n;
+	cin >> n;
+	while (n--)
+	{
+		int a, b, m;
+		cin >> a >> b >> m;
+		int x = 0, y = 0;
+		int d = exgcd(a, m, x, y);
+		if (b % d != 0) cout << "impossible" << endl;
+		else cout << x * (b / d) % m << endl;
+	}
 	return 0;
 }
+
