@@ -1,0 +1,3 @@
+﻿  text.cpp
+D:\Github仓库的克隆\Algorithm-learning\2023_2_2_数论_卡特兰数\2023_2_2_数论_卡特兰数\text.cpp(5,21): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  2023_2_2_数论_卡特兰数.vcxproj -> D:\Github仓库的克隆\Algorithm-learning\2023_2_2_数论_卡特兰数\x64\Debug\2023_2_2_数论_卡特兰数.exe
