@@ -3,3 +3,31 @@
 4 5
 acbd
 abedc
+
+最长上升子序列
+
+7
+3 1 2 1 8 5 6
+
+4
+
+最短编辑距离
+
+10
+AGTCTGACGC
+11
+AGTAAGTAGGC
+
+4
+
+编辑距离的应用
+
+3 2
+abc
+acd
+bcd
+ab 1
+acbd 2
+
+1
+3
