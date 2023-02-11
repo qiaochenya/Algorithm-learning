@@ -81,38 +81,119 @@ using namespace std;
 
 //区间分组
 
-const int N = 1e5 + 10;
-int n;
-struct Range
-{
-	int l, r;
-	bool operator < (const Range& w)const
-	{
-		return l < w.l;
-	}
-}range[N];
+//const int N = 1e5 + 10;
+//int n;
+//struct Range
+//{
+//	int l, r;
+//	bool operator < (const Range& w)const
+//	{
+//		return l < w.l;
+//	}
+//}range[N];
+//
+//int main()
+//{
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int l, r;
+//		cin >> l >> r;
+//		range[i] = { l,r };
+//	}
+//	sort(range, range + n);
+//
+//	priority_queue<int, vector<int>, greater<int>> heap;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (heap.empty() || heap.top() >= range[i].l) heap.push(range[i].r);
+//		else
+//		{
+//			heap.pop();
+//			heap.push(range[i].r);
+//		}
+//	}
+//	cout << heap.size() << endl;
+//	return 0;
+//}
+
+//区间覆盖
+
+//const int N = 1e5 + 10;
+//int n, st, ed;
+//struct Range
+//{
+//	int l, r;
+//	bool operator <(const Range& w)const
+//	{
+//		return l < w.l;
+//	}
+//}range[N];
+//
+//int main()
+//{
+//	cin >> st >> ed;
+//	cin >> n;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int l, r;
+//		cin >> l >> r;
+//		range[i] = { l,r };
+//	}
+//	sort(range, range + n);
+//
+//	bool succese = false;
+//	int res = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int j = i, r = (int)-2e9;
+//		while (j < n && range[j].l <= st)
+//		{
+//			r = max(r, range[j].r);
+//			j++;
+//		}
+//		if (r < st)
+//		{
+//			res = -1;
+//			break;
+//		}
+//		res++;
+//		if (r >= ed)
+//		{
+//			succese = true;
+//			break;
+//		}
+//		i = j - 1;
+//		st = r;
+//	}
+//	if (succese == false) cout << -1 << endl;
+//	else cout << res << endl;
+//	return 0;
+//}
+
+//合并果子
 
 int main()
 {
+	int n;
 	cin >> n;
-	for (int i = 0; i < n; i++)
+	priority_queue<int, vector<int>, greater<int>>heap;
+	while (n--)
 	{
-		int l, r;
-		cin >> l >> r;
-		range[i] = { l,r };
+		int x;
+		cin >> x;
+		heap.push(x);
 	}
-	sort(range, range + n);
-
-	priority_queue<int, vector<int>, greater<int>> heap;
-	for (int i = 0; i < n; i++)
+	int res = 0;
+	while (heap.size() > 1)
 	{
-		if (heap.empty() || heap.top() >= range[i].l) heap.push(range[i].r);
-		else
-		{
-			heap.pop();
-			heap.push(range[i].r);
-		}
+		int a = heap.top(); 
+		heap.pop();
+		int b = heap.top();
+		heap.pop();
+		res += a + b;
+		heap.push(a + b);
 	}
-	cout << heap.size() << endl;
+	cout << res << endl;
 	return 0;
 }

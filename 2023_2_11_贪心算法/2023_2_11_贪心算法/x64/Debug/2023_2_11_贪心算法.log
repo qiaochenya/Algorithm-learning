@@ -1,0 +1,4 @@
+﻿  text.cpp
+D:\Github仓库的克隆\Algorithm-learning\2023_2_11_贪心算法\2023_2_11_贪心算法\text.cpp(47,19): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+D:\Github仓库的克隆\Algorithm-learning\2023_2_11_贪心算法\2023_2_11_贪心算法\text.cpp(61,10): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+  2023_2_11_贪心算法.vcxproj -> D:\Github仓库的克隆\Algorithm-learning\2023_2_11_贪心算法\x64\Debug\2023_2_11_贪心算法.exe
