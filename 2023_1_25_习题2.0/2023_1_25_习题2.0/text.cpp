@@ -61,50 +61,105 @@ using namespace std;
 //	return 0;
 //}
 
-#include <cstdio>
-#include <iostream>
-#include <algorithm>
-using namespace std;
-const int N = 1e5 + 10;
+//#include <cstdio>
+//#include <iostream>
+//#include <algorithm>
+//using namespace std;
+//const int N = 1e5 + 10;
+//
+//pair<int, int> a[N];
+//int n;
+//bool st[N];
+//
+//int main()
+//{
+//    scanf("%d", &n);
+//    int k = n;
+//    while (k--)
+//    {
+//        int x, y;
+//        scanf("%d%d", &x, &y);
+//        a[k] = { x, y };
+//    }
+//    sort(a, a + n);
+//
+//    int ans = 0;
+//    for (int i = 0; i < n; i++)
+//    {
+//        for (int j = i + 1; j < n; j++)
+//        {
+//
+//            if (a[i].second > a[j].second)
+//            {
+//                if (st[i] == true && st[j] == false)
+//                    ans++;
+//                if (st[i] == false && st[j] == false)
+//                {
+//                    st[i] = true;
+//                    st[j] = true;
+//                    ans += 2;
+//                }
+//
+//
+//            }
+//
+//        }
+//    }
+//
+//    cout << ans << endl;
+//}
 
-pair<int, int> a[N];
-int n;
-bool st[N];
+
+#include <cstring>
+using namespace std;
+
+const int N = 1e5 + 10;
+int n, m;
+pair<int, int>g[N];
+int use[N];
+
+int dfs(int u, int x)
+{
+    x++;
+    if (x == m)
+    {
+        return g[u].first - g[u].second * use[u];
+        //use[u]--;
+    }
+    int res;
+    if (x != m)
+    {
+
+        int y = res = g[u].first - g[u].second * use[u];
+
+
+        for (int i = 0; i < n; i++)
+        {
+            use[i]++;
+            res = max(res, y + dfs(i, x));
+            use[i]--;
+        }
+    }
+    return res;
+}
 
 int main()
 {
-    scanf("%d", &n);
-    int k = n;
-    while (k--)
-    {
-        int x, y;
-        scanf("%d%d", &x, &y);
-        a[k] = { x, y };
-    }
-    sort(a, a + n);
-
-    int ans = 0;
+    memset(use, -1, sizeof(use));
+    scanf("%d%d", &n, &m);
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
-        {
-
-            if (a[i].second > a[j].second)
-            {
-                if (st[i] == true && st[j] == false)
-                    ans++;
-                if (st[i] == false && st[j] == false)
-                {
-                    st[i] = true;
-                    st[j] = true;
-                    ans += 2;
-                }
-
-
-            }
-
-        }
+        int a, b;
+        scanf("%d%d", &a, &b);
+        g[i] = { a, b };
     }
-
-    cout << ans << endl;
+    int res = 0;
+    for (int i = 0; i < n; i++)
+    {
+        use[i]++;
+        res = max(res, dfs(i, 0));
+        use[i]--;
+    }
+    cout << res << endl;
+    return 0;
 }
