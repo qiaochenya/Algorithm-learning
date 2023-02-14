@@ -110,56 +110,124 @@ using namespace std;
 //}
 
 
+//#include <cstring>
+//using namespace std;
+//
+//const int N = 1e5 + 10;
+//int n, m;
+//pair<int, int>g[N];
+//int use[N];
+//
+//int dfs(int u, int x)
+//{
+//    x++;
+//    if (x == m)
+//    {
+//        return g[u].first - g[u].second * use[u];
+//        //use[u]--;
+//    }
+//    int res;
+//    if (x != m)
+//    {
+//
+//        int y = res = g[u].first - g[u].second * use[u];
+//
+//
+//        for (int i = 0; i < n; i++)
+//        {
+//            use[i]++;
+//            res = max(res, y + dfs(i, x));
+//            use[i]--;
+//        }
+//    }
+//    return res;
+//}
+//
+//int main()
+//{
+//    memset(use, -1, sizeof(use));
+//    scanf("%d%d", &n, &m);
+//    for (int i = 0; i < n; i++)
+//    {
+//        int a, b;
+//        scanf("%d%d", &a, &b);
+//        g[i] = { a, b };
+//    }
+//    int res = 0;
+//    for (int i = 0; i < n; i++)
+//    {
+//        use[i]++;
+//        res = max(res, dfs(i, 0));
+//        use[i]--;
+//    }
+//    cout << res << endl;
+//    return 0;
+//}
+
+#include <iostream>
 #include <cstring>
 using namespace std;
 
-const int N = 1e5 + 10;
-int n, m;
-pair<int, int>g[N];
-int use[N];
+const int N = 6;
+char g[N][N], backup[N][N];
+int n;
+int dx[5] = { 0, -1, 0, 1, 0 }, dy[5] = { -1, 0, 1, 0, 0 };
 
-int dfs(int u, int x)
+void turn(int x, int y)
 {
-    x++;
-    if (x == m)
+    for (int i = 0; i < 5; i++)
     {
-        return g[u].first - g[u].second * use[u];
-        //use[u]--;
+        int a = x + dx[i], b = y + dy[i];
+        backup[a][b] ^= 1;
     }
-    int res;
-    if (x != m)
-    {
-
-        int y = res = g[u].first - g[u].second * use[u];
-
-
-        for (int i = 0; i < n; i++)
-        {
-            use[i]++;
-            res = max(res, y + dfs(i, x));
-            use[i]--;
-        }
-    }
-    return res;
 }
 
 int main()
 {
-    memset(use, -1, sizeof(use));
-    scanf("%d%d", &n, &m);
-    for (int i = 0; i < n; i++)
+    cin >> n;
+    while (n--)
     {
-        int a, b;
-        scanf("%d%d", &a, &b);
-        g[i] = { a, b };
+        for (int i = 0; i < 5; i++) cin >> g[i];
+        memcpy(backup, g, sizeof(g));
+        int res = 114514, step = 0;
+
+        for (int k = 0; k < 1 << 5; k++)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                if ((k >> i & 1) == 1)
+                {
+                    step++:
+                    turn(0, i);
+                }
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (backup[i][j] == '0')
+                    {
+                        step++;
+                        turn(i + 1, j);
+                    }
+                }
+            }
+
+            bool dark = false;
+            for (int j = 0; j < 4; j++)
+            {
+                if (backup[4][j] == '0')
+                {
+                    dark = true;
+                    break;
+                }
+            }
+            if (dark == false)
+                res = min(step, res);
+        }
+        if (res > 6) cout << -1 << endl;
+        else cout << res << endl;
     }
-    int res = 0;
-    for (int i = 0; i < n; i++)
-    {
-        use[i]++;
-        res = max(res, dfs(i, 0));
-        use[i]--;
-    }
-    cout << res << endl;
     return 0;
 }

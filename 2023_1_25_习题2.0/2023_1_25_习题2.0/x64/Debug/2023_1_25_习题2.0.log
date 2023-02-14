@@ -1,3 +1,46 @@
 ﻿  text.cpp
-D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(116,19): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
-  2023_1_25_习题2.0.vcxproj -> D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\x64\Debug\2023_1_25_习题2.0.exe
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): error C2679: 二元“>>”: 没有找到接受“int [6]”类型的右操作数的运算符(或没有可接受的转换)
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(299,39): message : 可能是“std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_streambuf<char,std::char_traits<char>> *)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(295,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(void *&)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(291,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(long double &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(287,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(double &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(283,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(float &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(279,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned __int64 &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(275,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(__int64 &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(271,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned long &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(267,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(long &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(263,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned int &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(255,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(int &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(251,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(unsigned short &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(219,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(short &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(215,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(bool &)”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(186,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::ios_base &(__cdecl *)(std::ios_base &))”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(181,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(176,39): message : 或    “std::basic_istream<char,std::char_traits<char>> &std::basic_istream<char,std::char_traits<char>>::operator >>(std::basic_istream<char,std::char_traits<char>> &(__cdecl *)(std::basic_istream<char,std::char_traits<char>> &))”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(901,9): message : 或    “_Istr &&std::operator >>(_Istr &&,_Ty &&)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,48): message : “_Istr &&std::operator >>(_Istr &&,_Ty &&)”: 无法推导“__formal”的 模板 参数
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(888,31): message : 或    “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char &)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : “初始化”: 无法从“int [6]”转换为“unsigned char &”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(882,31): message : 或    “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char &)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : “初始化”: 无法从“int [6]”转换为“signed char &”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(859,32): message : 或    “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)”: 模板 参数“_Elem”不明确
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : 可能是“int [6]”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : 或    “char”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem &)”: 无法从“int [6]”推导出“_Elem &”的 模板 参数
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(853,31): message : 或    “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,unsigned char *)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : “初始化”: 无法从“int [6]”转换为“unsigned char *”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(848,31): message : 或    “std::basic_istream<char,_Traits> &std::operator >>(std::basic_istream<char,_Traits> &,signed char *)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : “初始化”: 无法从“int [6]”转换为“signed char *”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,47): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\istream(843,32): message : 或    “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem *)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem *)”: 模板 参数“_Elem”不明确
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : 可能是“int”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : 或    “char”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,_Elem *)”: 无法从“int [6]”推导出“_Elem *”的 模板 参数
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\xstring(5311,32): message : 或    “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : “std::basic_istream<_Elem,_Traits> &std::operator >>(std::basic_istream<_Elem,_Traits> &,std::basic_string<_Elem,_Traits,_Alloc> &)”: 无法从“int [6]”推导出“std::basic_string<_Elem,_Traits,_Alloc> &”的 模板 参数
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(190,37): message : 尝试匹配参数列表“(std::istream, int [6])”时
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(200,27): error C2143: 语法错误: 缺少“;”(在“:”的前面)
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(200,27): error C2059: 语法错误:“:”
