@@ -164,70 +164,109 @@ using namespace std;
 //    return 0;
 //}
 
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//const int N = 6;
+//char g[N][N], backup[N][N];
+//int n;
+//int dx[5] = { 0, -1, 0, 1, 0 }, dy[5] = { -1, 0, 1, 0, 0 };
+//
+//void turn(int x, int y)
+//{
+//    for (int i = 0; i < 5; i++)
+//    {
+//        int a = x + dx[i], b = y + dy[i];
+//        backup[a][b] ^= 1;
+//    }
+//}
+//
+//int main()
+//{
+//    cin >> n;
+//    while (n--)
+//    {
+//        for (int i = 0; i < 5; i++) cin >> g[i];
+//        memcpy(backup, g, sizeof(g));
+//        int res = 114514, step = 0;
+//
+//        for (int k = 0; k < 1 << 5; k++)
+//        {
+//            for (int i = 0; i < 5; i++)
+//            {
+//                if ((k >> i & 1) == 1)
+//                {
+//                    step++:
+//                    turn(0, i);
+//                }
+//            }
+//
+//            for (int i = 0; i < 4; i++)
+//            {
+//                for (int j = 0; j < 5; j++)
+//                {
+//                    if (backup[i][j] == '0')
+//                    {
+//                        step++;
+//                        turn(i + 1, j);
+//                    }
+//                }
+//            }
+//
+//            bool dark = false;
+//            for (int j = 0; j < 4; j++)
+//            {
+//                if (backup[4][j] == '0')
+//                {
+//                    dark = true;
+//                    break;
+//                }
+//            }
+//            if (dark == false)
+//                res = min(step, res);
+//        }
+//        if (res > 6) cout << -1 << endl;
+//        else cout << res << endl;
+//    }
+//    return 0;
+//}
+
 #include <iostream>
-#include <cstring>
 using namespace std;
 
-const int N = 6;
-char g[N][N], backup[N][N];
-int n;
-int dx[5] = { 0, -1, 0, 1, 0 }, dy[5] = { -1, 0, 1, 0, 0 };
+const int N = 110;
+int T;
+int g[N][N];
 
-void turn(int x, int y)
+int dfs(int cnt, int x, int y, int r, int c)
 {
-    for (int i = 0; i < 5; i++)
+    int Max = cnt;
+    if (x + 1 <= r)
     {
-        int a = x + dx[i], b = y + dy[i];
-        backup[a][b] ^= 1;
+        Max = max(Max, dfs(cnt + g[x + 1][y], x, y, r, c));
     }
+    if (y + 1 <= c)
+    {
+        Max = max(Max, dfs(cnt + g[x][y + 1], x, y, r, c));
+    }
+    return Max;
 }
 
 int main()
 {
-    cin >> n;
-    while (n--)
+    cin >> T;
+
+    while (T--)
     {
-        for (int i = 0; i < 5; i++) cin >> g[i];
-        memcpy(backup, g, sizeof(g));
-        int res = 114514, step = 0;
+        int r, c;
+        cin >> r >> c;
+        for (int i = 1; i <= r; i++)
+            for (int j = 1; j <= c; j++)
+                cin >> g[i][j];
 
-        for (int k = 0; k < 1 << 5; k++)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                if ((k >> i & 1) == 1)
-                {
-                    step++:
-                    turn(0, i);
-                }
-            }
+        int res = dfs(g[1][1], 1, 1, r, c);
 
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 5; j++)
-                {
-                    if (backup[i][j] == '0')
-                    {
-                        step++;
-                        turn(i + 1, j);
-                    }
-                }
-            }
-
-            bool dark = false;
-            for (int j = 0; j < 4; j++)
-            {
-                if (backup[4][j] == '0')
-                {
-                    dark = true;
-                    break;
-                }
-            }
-            if (dark == false)
-                res = min(step, res);
-        }
-        if (res > 6) cout << -1 << endl;
-        else cout << res << endl;
+        cout << res << endl;
     }
-    return 0;
 }
