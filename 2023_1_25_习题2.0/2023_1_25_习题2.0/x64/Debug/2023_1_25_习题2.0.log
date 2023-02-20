@@ -1,2 +1,14 @@
 ﻿  text.cpp
-  2023_1_25_习题2.0.vcxproj -> D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\x64\Debug\2023_1_25_习题2.0.exe
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(246,5): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(255,21): error C2679: 二元“[”: 没有找到接受“std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>”类型的右操作数的运算符(或没有可接受的转换)
+          with
+          [
+              _Elem=char
+          ]
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\xstring(4179,45): message : 可能是“const char &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::operator [](const unsigned __int64) noexcept const”
+C:\VS\IDE\VC\Tools\MSVC\14.34.31933\include\xstring(4172,39): message : 或    “char &std::basic_string<char,std::char_traits<char>,std::allocator<char>>::operator [](const unsigned __int64) noexcept”
+D:\Github仓库的克隆\Algorithm-learning\2023_1_25_习题2.0\2023_1_25_习题2.0\text.cpp(255,21): message : 尝试匹配参数列表“(std::string, std::_String_iterator<std::_String_val<std::_Simple_types<_Elem>>>)”时
+          with
+          [
+              _Elem=char
+          ]

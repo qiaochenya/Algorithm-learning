@@ -232,41 +232,48 @@ using namespace std;
 //    return 0;
 //}
 
+//#include <iostream>
+//#include <vector>
+//using namespace std;
+//
+//const int N = 5;
+//vector<int> A;
+//string a;
+//
+//int main()
+//{
+//    cin >> a;
+//    for (int i = a.size() - 1; i >= 0; i--)
+//        A.push_back(a[i] - '0');
+//
+//    int cnt = 0;
+//    for (int i = 0; i <= A.size() - 1; i++)
+//    {
+//        if (A[i] == 0)
+//        {
+//            cnt++;
+//            A.erase(a[a.begin() + i]);
+//        }
+//    }
+//    for (int i = 0; i < cnt; i++)
+//        A.push_back(0);
+//
+//    for (auto i : A)
+//    {
+//        cout << i << " ";
+//    }
+//    cout << endl;
+//    return 0;
+//}
+
 #include <iostream>
+#include <vector>
 using namespace std;
-
-const int N = 110;
-int T;
-int g[N][N];
-
-int dfs(int cnt, int x, int y, int r, int c)
-{
-    int Max = cnt;
-    if (x + 1 <= r)
-    {
-        Max = max(Max, dfs(cnt + g[x + 1][y], x, y, r, c));
-    }
-    if (y + 1 <= c)
-    {
-        Max = max(Max, dfs(cnt + g[x][y + 1], x, y, r, c));
-    }
-    return Max;
-}
-
 int main()
 {
-    cin >> T;
-
-    while (T--)
-    {
-        int r, c;
-        cin >> r >> c;
-        for (int i = 1; i <= r; i++)
-            for (int j = 1; j <= c; j++)
-                cin >> g[i][j];
-
-        int res = dfs(g[1][1], 1, 1, r, c);
-
-        cout << res << endl;
+    std::vector<int> v = { 1, 2, 3, 4, 5, 6 };
+    v.erase(v.begin() + 2);     //删除第三个位置的元素
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i] << " ";
     }
 }
