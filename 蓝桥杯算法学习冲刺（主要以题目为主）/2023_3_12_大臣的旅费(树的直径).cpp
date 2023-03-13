@@ -33,7 +33,7 @@ int main()
         h[a].push_back({b, c});
         h[b].push_back({a, c});
     }
-
+    //! 找树的直径先找一个点，dfs（），在通过这个点找另外一个点，dfs（），就会出现直径了
     dfs(1, -1, 0);
 
     int u = 1;
